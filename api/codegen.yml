@@ -1,0 +1,6 @@
+schema: schema.json
+generates:
+  ./src/schema/__generated/resolvers-types.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
