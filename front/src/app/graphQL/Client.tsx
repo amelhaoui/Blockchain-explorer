@@ -51,7 +51,7 @@ const cache = new InMemoryCache({
 });
 
 const CLIENT = new ApolloClient({
-  uri: "https://nuri-challenge-backend.herokuapp.com/",
+  uri: "https://nuri-challenge-backend.herokuapp.com/graphql",
   cache: cache,
   connectToDevTools: true,
 });
