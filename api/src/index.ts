@@ -1,6 +1,7 @@
 import * as dotenv from'dotenv'
 
 import http from 'http';
+import cors from 'cors';
 import express from "express";
 import { ApolloServer, Config, ExpressContext } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer, ApolloError } from 'apollo-server-core';
@@ -25,6 +26,7 @@ dotenv.config();
 
 async function startApolloServer({ typeDefs, resolvers }: Config<ExpressContext>) {
     const app = express();
+    app.use(cors({ origin: "*", credentials: false }))
     const httpServer = http.createServer(app);
 
     const server = new ApolloServer({
@@ -35,6 +37,8 @@ async function startApolloServer({ typeDefs, resolvers }: Config<ExpressContext>
                 BlocksAPI: new BlocksAPI()
             };
         },
+        introspection: true, //optional if you still want access to graphQL playground in production
+        playground: true, //optional if you still want access to graphQL playground in production   
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer }),
             {   
@@ -99,14 +103,18 @@ async function startApolloServer({ typeDefs, resolvers }: Config<ExpressContext>
     await server.start();
     server.applyMiddleware({
         app,
-        path: '/graphql'
+        cors: false,
     });
 
     // Modified server startup
-    await new Promise(resolve => httpServer.listen({ port: 4000 }, () => resolve("Sucess")));
-    logger.log('info', '🚀 Server ready at http://localhost:4000/%s', server.graphqlPath);
+    const PORT = process.env.PORT || 3000;
+
+    await new Promise(resolve => httpServer.listen({ port: PORT}, () => resolve("Sucess")));
+    logger.log('info', '🚀 Server ready at http://localhost:%s/%s', PORT, server.graphqlPath);
 
     return { server, app };
 }
 
+
 startApolloServer({ typeDefs, resolvers });
+

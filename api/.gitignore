@@ -26,4 +26,3 @@ logs-combined.log*
 
 # generated files
 schema.json
-src/schema/__generated/*
