@@ -18,7 +18,6 @@ docker build -t nuri-challenge-backend .
 docker run -it nuri-challenge-backend -p 5000:9000 -e PORT=9000 // you choose which port the server will run on
 // you can check the backend in you browser in localhost:5000
 ```
-
 ### Frontend server
 ```
 cd front
@@ -44,7 +43,6 @@ npm run dev
 Check your server in [http://localhost:4000](http://localhost:4000) to view it in the browser.  \
 The page will reload if you make edits. \
 You will also see any lint errors in the console.
-
 ### Frontend server
 
 ```

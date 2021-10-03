@@ -24,7 +24,7 @@ export default function AppWrapper({ children }: Props): JSX.Element {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box >
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar>
