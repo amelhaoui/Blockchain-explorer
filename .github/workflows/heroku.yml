@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install dependencies
-        run: yarn
+        run: cd api && yarn
       - run: yarn run test
   build-backend:
     needs: test-backend
