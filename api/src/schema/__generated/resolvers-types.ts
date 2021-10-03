@@ -20,6 +20,7 @@ export type BlockDetail = {
   hash: Scalars['ID'];
   height: Scalars['Int'];
   n_tx: Scalars['Int'];
+  next_block?: Maybe<Array<Maybe<Scalars['String']>>>;
   prev_block: Scalars['String'];
   size: Scalars['String'];
   time: Scalars['String'];
@@ -155,6 +156,7 @@ export type BlockDetailResolvers<ContextType = any, ParentType extends Resolvers
   hash?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   height?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   n_tx?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  next_block?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   prev_block?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   size?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   time?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

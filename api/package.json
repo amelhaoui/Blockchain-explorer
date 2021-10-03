@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jest.config.js",
     "build": "tsc",
     "dev": "NODE_PATH=./src ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "start": "NODE_PATH=./build node build/index.js",
     "lint": "eslint . --ext .ts",
-    "downloadSchema": "npx apollo service:download --endpoint=http://localhost:4000/graphql/graphql-schema.json"
+    "generateResolversTypes": "npx apollo service:download --endpoint=http://localhost:4000/graphql/graphql-schema.json && graphql-codegen"
   },
   "keywords": [],
   "author": "Abderrahmane Melhaoui",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@sentry/node": "^6.13.2",
     "@sentry/tracing": "^6.13.2",
+    "@types/redis": "^2.8.32",
     "apollo-datasource-rest": "^3.2.0",
     "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
@@ -24,9 +25,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.6.0",
+    "redis": "^3.1.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/preset-typescript": "^7.15.0",
     "@bitwala/eslint-config": "0.4.2",
     "@graphql-codegen/cli": "^2.2.0",
     "@graphql-codegen/typescript": "^2.2.2",
@@ -36,11 +40,14 @@
     "@types/express": "^4.17.13",
     "@types/graphql": "^14.5.0",
     "@types/helmet": "^4.0.0",
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.10.1",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "apollo": "^2.33.6",
     "eslint": "^7.32.0",
+    "jest": "^27.2.4",
+    "ts-jest": "^27.0.5",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3"
   }

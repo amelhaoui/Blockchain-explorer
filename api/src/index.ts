@@ -16,9 +16,10 @@ import BlocksAPI from 'datasources/BlocksAPI';
 
 import logger from 'config/logger';
 import { GraphQLError, OperationDefinitionNode } from "graphql";
+import { SENTRY_URL } from 'config/constants';
 
 Sentry.init({
-    dsn: "https://0cfb22910cec4575b82bf2dd6105b6fd@o1020992.ingest.sentry.io/5986677",
+    dsn: SENTRY_URL,
     tracesSampleRate: 1.0,
 });
 

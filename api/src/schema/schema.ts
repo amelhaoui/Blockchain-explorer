@@ -15,6 +15,7 @@ const typeDefs = gql`
       block_index: Int!
       fee: Int!
       prev_block: String!
+      next_block: [String]
       n_tx: Int!
       tx: [Transaction]!
   }

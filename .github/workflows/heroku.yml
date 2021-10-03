@@ -17,7 +17,19 @@ jobs:
           heroku_app_name: "challenge-nuri" 
           heroku_email: "melhaoui.abderrahmane@gmail.com"
           appdir: "front"
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: yarn
+      - run: yarn run test
   build-backend:
+    needs: test-backend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

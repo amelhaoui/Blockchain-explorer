@@ -1,12 +1,12 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-
+import { BLOCKCHAIN_URL } from 'config/constants';
 //import logger from 'config/logger';
 //import { Resolvers } from 'schema/__generated/resolvers-types';
 
 class BlocksAPI extends RESTDataSource {
     constructor() {
         super();
-        this.baseURL = 'https://blockchain.info/';
+        this.baseURL = BLOCKCHAIN_URL;
     }
 
     async getBlocks(time: string): Promise<unknown> {
@@ -14,7 +14,7 @@ class BlocksAPI extends RESTDataSource {
         if (time) {
             timeMillis = parseInt(time);
         }
-        return this.get(`blocks/${timeMillis}?format=json`)
+        return this.get(`blocks/${timeMillis}?format=json`);
     }
 
     async getBlock(hash: string): Promise<unknown> {
