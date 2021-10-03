@@ -27,7 +27,8 @@ jobs:
           node-version: '14.x'
       - name: Install dependencies
         run: cd api && yarn
-      - run: yarn run test
+      - name: Run tests 
+        run: cd api && yarn run test
   build-backend:
     needs: test-backend
     runs-on: ubuntu-latest
