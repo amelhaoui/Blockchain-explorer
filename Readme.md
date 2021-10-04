@@ -34,13 +34,14 @@ P.S: please note, I put the API_KEY directly on the workflows, as I dont have ac
 - For the API, I created it using graphql, with Apollo server (uses express.js) 
 - I added unit tests and an integration test with jest and ts-jest \
 - I connected a Sentry instance for handling Graphql Errors \
-- For logging I used winston (but not much)
+- For logging I used winston 
 
 ### Frontend:
 - Bootstraped with creact react app
 - I used React.js with Typescript. 
 - For design, I used Material-ui which is popular.
 - To connect to the backend, I'm using Apollo Client
+- Sentry for error monitoring and performance
 
 ### Typescript files:
 
