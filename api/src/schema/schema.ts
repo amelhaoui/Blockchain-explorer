@@ -7,6 +7,13 @@ const typeDefs = gql`
       height: Int!
   }
 
+  type BlocksResponse {
+    size: Int!
+    offset: Int!
+    limit: Int!
+    data: [BlockSummary]!
+  }
+
   type BlockDetail {
       hash: ID!
       time: String!
@@ -27,7 +34,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    blocks(time: String!, offset: Int!, limit: Int!): [BlockSummary]!
+    blocks(time: String!, offset: Int!, limit: Int!): BlocksResponse!
     block(hash: ID!): BlockDetail!
     transactions(hash: ID!, page: Int!): [Transaction]!
   }

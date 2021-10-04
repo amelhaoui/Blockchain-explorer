@@ -34,10 +34,18 @@ export type BlockSummary = {
   time: Scalars['String'];
 };
 
+export type BlocksResponse = {
+  __typename?: 'BlocksResponse';
+  data: Array<Maybe<BlockSummary>>;
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  size: Scalars['Int'];
+};
+
 export type Query = {
   __typename?: 'Query';
   block: BlockDetail;
-  blocks: Array<Maybe<BlockSummary>>;
+  blocks: BlocksResponse;
   transactions: Array<Maybe<Transaction>>;
 };
 
@@ -137,6 +145,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   BlockDetail: ResolverTypeWrapper<BlockDetail>;
   BlockSummary: ResolverTypeWrapper<BlockSummary>;
+  BlocksResponse: ResolverTypeWrapper<BlocksResponse>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -149,6 +158,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   BlockDetail: BlockDetail;
   BlockSummary: BlockSummary;
+  BlocksResponse: BlocksResponse;
   Boolean: Scalars['Boolean'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
@@ -178,9 +188,17 @@ export type BlockSummaryResolvers<ContextType = any, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type BlocksResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['BlocksResponse'] = ResolversParentTypes['BlocksResponse']> = {
+  data?: Resolver<Array<Maybe<ResolversTypes['BlockSummary']>>, ParentType, ContextType>;
+  limit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  offset?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  size?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   block?: Resolver<ResolversTypes['BlockDetail'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'hash'>>;
-  blocks?: Resolver<Array<Maybe<ResolversTypes['BlockSummary']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'limit' | 'offset' | 'time'>>;
+  blocks?: Resolver<ResolversTypes['BlocksResponse'], ParentType, ContextType, RequireFields<QueryBlocksArgs, 'limit' | 'offset' | 'time'>>;
   transactions?: Resolver<Array<Maybe<ResolversTypes['Transaction']>>, ParentType, ContextType, RequireFields<QueryTransactionsArgs, 'hash' | 'page'>>;
 };
 
@@ -194,6 +212,7 @@ export type TransactionResolvers<ContextType = any, ParentType extends Resolvers
 export type Resolvers<ContextType = any> = {
   BlockDetail?: BlockDetailResolvers<ContextType>;
   BlockSummary?: BlockSummaryResolvers<ContextType>;
+  BlocksResponse?: BlocksResponseResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Transaction?: TransactionResolvers<ContextType>;
 };

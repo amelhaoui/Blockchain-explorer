@@ -2,61 +2,12 @@
 
 exports[`API integration fetches 10 blocks 1`] = `
 Object {
-  "data": Object {
-    "blocks": Array [
-      Object {
-        "hash": "0000000000000000000dc7e9e2b6b460b09658ede1a7235377eb5cc6a12ea29b",
-        "height": 703376,
-        "time": "1633272049",
-      },
-      Object {
-        "hash": "00000000000000000001d3d60facac6a44f58ae34e8b4a064f16be8432388f22",
-        "height": 703375,
-        "time": "1633272021",
-      },
-      Object {
-        "hash": "000000000000000000099cd7c12e7b4df8e19d2469694c66be038057c8e5639b",
-        "height": 703374,
-        "time": "1633271921",
-      },
-      Object {
-        "hash": "0000000000000000000949c5edc618671b1df1255c5a477428e51fe4a360ffc8",
-        "height": 703373,
-        "time": "1633271415",
-      },
-      Object {
-        "hash": "0000000000000000000276388ba18ce921d7d825863c4bb6a3b607e1dafb6e7e",
-        "height": 703372,
-        "time": "1633270826",
-      },
-      Object {
-        "hash": "000000000000000000095568fcb927e1b0e519ca185bb87f10cb76fd7df3730b",
-        "height": 703371,
-        "time": "1633268867",
-      },
-      Object {
-        "hash": "0000000000000000000352358c54e848b2ed1bce333911c3645c95bbf583abe7",
-        "height": 703370,
-        "time": "1633267705",
-      },
-      Object {
-        "hash": "000000000000000000070f9569c445e2de1addba69e1046aa5ce49329cabec01",
-        "height": 703369,
-        "time": "1633266582",
-      },
-      Object {
-        "hash": "0000000000000000000b4272e298930d257f01bf561f51cf4d231aa50d003e90",
-        "height": 703368,
-        "time": "1633266400",
-      },
-      Object {
-        "hash": "00000000000000000007cdf638de8885341536ab7f56fd20972b0c852c9a55e1",
-        "height": 703367,
-        "time": "1633266209",
-      },
-    ],
-  },
-  "errors": undefined,
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Cannot query field "hash" on type "BlocksResponse".],
+    [ValidationError: Cannot query field "height" on type "BlocksResponse".],
+    [ValidationError: Cannot query field "time" on type "BlocksResponse". Did you mean "size"?],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

@@ -29,6 +29,8 @@ export default function HomePage() {
     }
   );
 
+  console.log(data)
+
   const onTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newDate = new Date(event.target.value);
     if (newDate.toString() === "Invalid Date") {
@@ -72,9 +74,9 @@ export default function HomePage() {
           onChange={onTimeChange}
         />
       </Header>
-      <BlocksTable data={data} />
+      <BlocksTable {...data} />
       <Pagination
-        count={10}
+        count={Math.ceil(data.blocks.size/10)}
         page={page}
         onChange={onChangePage}
         color="secondary"

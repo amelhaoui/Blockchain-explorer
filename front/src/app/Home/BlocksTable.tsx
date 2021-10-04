@@ -15,9 +15,8 @@ const useStyles = makeStyles({
     }
 });
 
-const BlocksTable = (props: { data: { blocks: Array<GetBlocks_blocks> } }) => {
+const BlocksTable = (props: {blocks : GetBlocks_blocks} ) => {
     const classes = useStyles();
-
     const history = useHistory();
     const handleClick = (event: React.MouseEvent<unknown>, hash: string) => {
         history.push(`/blocks/${hash}`);
@@ -48,7 +47,7 @@ const BlocksTable = (props: { data: { blocks: Array<GetBlocks_blocks> } }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.data.blocks.map((row: any) => (
+                    {props.blocks.data.map((row: any) => (
                         <TableRow
                             hover
                             classes={{ root: classes.row }}

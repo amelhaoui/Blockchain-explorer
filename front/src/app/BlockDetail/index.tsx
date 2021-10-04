@@ -68,7 +68,7 @@ export default function BlockDetailPage() {
     <React.Fragment>
       <Header {...data.block} />
       <Pagination
-        count={10}
+        count={Math.ceil(data.block.n_tx)}
         page={page}
         onChange={onChangePage}
         color="secondary"

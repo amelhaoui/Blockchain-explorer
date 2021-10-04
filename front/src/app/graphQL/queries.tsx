@@ -3,9 +3,14 @@ import { gql } from "@apollo/client";
 const GET_BLOCKS = gql`
   query GetBlocks($time: String!, $offset: Int!, $limit: Int!) {
     blocks(time: $time, offset: $offset, limit: $limit) {
-      hash
-      height
-      time
+      size
+      offset
+      limit
+      data {
+        hash
+        time
+        height
+      }
     }
   }
 `;
