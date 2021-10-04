@@ -126,6 +126,10 @@ With a caching, there should be a strategy to be defined, as blocks can be repre
 To use (time in miliseconds) as key is not a * good solution * for retrieval. A better approach is to use height or block_id as key. \
 In the value side, we will store a number of blocks that came before this block.
 
+## Fallback errors:
+
+In case a URL is requested and we dont serve it (404) or an error from Server (4XX or 5XX), we should show proper UI message instead of showing the home page.
+
 ## Logging: 
 
 To analyze and store logs, one alternative is to use the ELK suite. To monitor and investigate logs in a large scale. \
