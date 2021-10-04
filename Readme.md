@@ -68,14 +68,14 @@ Open your command line and run the following commands:
 ```
 cd api
 docker build -t nuri-challenge-backend .
-docker run -it nuri-challenge-backend -p 5000:9000 -e PORT=9000 // you choose which port the server will run on
-// you can check the backend in you browser in localhost:5000
+docker run -d -p 5002:8000 -e PORT=8000 nuri-challenge-backend
+// you can check the backend in you browser in localhost:5002
 ```
 ### Frontend server
 ```
 cd front
 docker build -t nuri-challenge-frontend .
-docker run -it nuri-challenge-frontend -p 5001:80
+docker run -d -p 5001:80 nuri-challenge-frontend
 // you can check the frontend in you browser in localhost:5001
 ```
 
