@@ -1,8 +1,8 @@
 import * as React from "react";
 import { GET_BLOCKS } from "app/graphQL/queries";
-import { useQuery } from "@apollo/client";
+import { NetworkStatus, useQuery } from "@apollo/client";
 import { makeStyles } from "@mui/styles";
-import { Box, TextField, Pagination, CircularProgress } from "@mui/material";
+import { Box, TextField, Pagination, CircularProgress, LinearProgress } from "@mui/material";
 
 import Header from "./Header";
 import BlocksTable from "./BlocksTable";
@@ -18,18 +18,17 @@ export default function HomePage() {
   const [dates, setDates] = React.useState(new Date());
   const [page, setPage] = React.useState(1);
 
-  const { loading, error, data, fetchMore } = useQuery(
+  const { loading, error, data, fetchMore, networkStatus } = useQuery(
     GET_BLOCKS,
     {
       variables: {
         time: dates.getTime().toString(),
         offset: (page - 1) * 10,
         limit: 10,
-      }
+      },
+      notifyOnNetworkStatusChange: true
     }
   );
-
-  console.log(data)
 
   const onTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newDate = new Date(event.target.value);
@@ -49,9 +48,9 @@ export default function HomePage() {
       setPage(page);
     });
   };
+  
 
-
-  if (loading) {
+  if (loading && networkStatus === NetworkStatus.loading) {
     return (
       <React.Fragment>
         <Header />
@@ -75,8 +74,9 @@ export default function HomePage() {
         />
       </Header>
       <BlocksTable {...data} />
+      {networkStatus === NetworkStatus.fetchMore && <LinearProgress color="secondary" />}
       <Pagination
-        count={Math.ceil(data.blocks.size/10)}
+        count={data && data.blocks && !isNaN(data.blocks.size) ? Math.ceil(data.blocks.size/10) : 1}
         page={page}
         onChange={onChangePage}
         color="secondary"

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useQuery } from "@apollo/client";
+import { NetworkStatus, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { Box, CircularProgress, Pagination} from "@mui/material";
+import { Box, CircularProgress, Pagination, LinearProgress} from "@mui/material";
 
 import Header from "./Header";
 import TransactionsTable from "./TransactionsTable";
@@ -24,7 +24,7 @@ export default function BlockDetailPage() {
   const { hash } = useParams<{ hash: string}>();
   const { loading, error, data } = useQuery(GET_BLOCK, { variables: { hash }});
 
-  const {data: transactionsData, loading: loadingTransactions, fetchMore} = useQuery(GET_TRANSACTIONS, {variables: {hash, page}} );
+  const {data: transactionsData, loading: loadingTransactions, fetchMore, networkStatus} = useQuery(GET_TRANSACTIONS, {variables: {hash, page}, notifyOnNetworkStatusChange: true} );
 
   const onChangePage = (event: React.ChangeEvent<unknown>, page: number) => {
     fetchMore({
@@ -37,7 +37,7 @@ export default function BlockDetailPage() {
     });
   };
 
-  if (loading || loadingTransactions) {
+  if (loading || (loadingTransactions && networkStatus === NetworkStatus.loading)) {
     const loadingDATA: GetBlock_block = {
       hash: "-----",
       time: "-----",
@@ -68,7 +68,7 @@ export default function BlockDetailPage() {
     <React.Fragment>
       <Header {...data.block} />
       <Pagination
-        count={Math.ceil(data.block.n_tx/10)}
+        count={!data.block || isNaN(data.block.n_tx) ? 1 : Math.ceil(data.block.n_tx/10)}
         page={page}
         onChange={onChangePage}
         color="secondary"
@@ -77,6 +77,7 @@ export default function BlockDetailPage() {
         classes={{ ul: classes.ul }}
         sx={{mt: 3}}
       />
+      {networkStatus === NetworkStatus.fetchMore && <LinearProgress color="secondary" /> }
       <TransactionsTable {...transactionsData} />
     </React.Fragment>
   );

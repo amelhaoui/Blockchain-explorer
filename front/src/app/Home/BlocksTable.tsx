@@ -47,7 +47,7 @@ const BlocksTable = (props: {blocks : GetBlocks_blocks} ) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.blocks.data.map((row: any) => (
+                    {props.blocks && props.blocks.data.map((row: any) => (
                         <TableRow
                             hover
                             classes={{ root: classes.row }}
