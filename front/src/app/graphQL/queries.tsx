@@ -20,14 +20,20 @@ const GET_BLOCK = gql`
       block_index
       fee
       prev_block
+      next_block
       n_tx
-      tx {
-        hash
-        tx_index
-        size
-      }
     }
   }
 `;
 
-export { GET_BLOCKS, GET_BLOCK };
+const GET_TRANSACTIONS = gql`
+  query GetTransactions($hash: ID!, $page: Int!) {
+    transactions(hash: $hash, page: $page) {
+        hash
+        tx_index
+        size
+      }
+  }
+` 
+
+export { GET_BLOCKS, GET_BLOCK, GET_TRANSACTIONS};

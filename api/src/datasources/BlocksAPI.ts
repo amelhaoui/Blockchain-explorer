@@ -1,8 +1,5 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { BLOCKCHAIN_URL } from 'config/constants';
-//import logger from 'config/logger';
-//import { Resolvers } from 'schema/__generated/resolvers-types';
-
 class BlocksAPI extends RESTDataSource {
     constructor() {
         super();

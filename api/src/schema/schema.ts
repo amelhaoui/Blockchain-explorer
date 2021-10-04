@@ -29,6 +29,7 @@ const typeDefs = gql`
   type Query {
     blocks(time: String!, offset: Int!, limit: Int!): [BlockSummary]!
     block(hash: ID!): BlockDetail!
+    transactions(hash: ID!, page: Int!): [Transaction]!
   }
 `
 

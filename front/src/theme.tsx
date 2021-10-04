@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import grey from "@mui/material/colors/grey";
 
 const theme = createTheme({
   palette: {
@@ -19,7 +18,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: "none",
-          borderBottom: "2px solid #2c232e",
+          borderBottom: "1px solid #2c232e",
           borderTop: "1px solid #2c232e",
         },
       },

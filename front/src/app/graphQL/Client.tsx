@@ -1,12 +1,7 @@
 import {
   ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
+  InMemoryCache
 } from "@apollo/client";
-
-import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -17,13 +12,10 @@ const cache = new InMemoryCache({
           keyArgs: ["time"],
           //...offsetLimitPagination(),
           read(existing, { args }) {
-            console.log(args);
-            console.table(existing);
             if (!args) return undefined;
             return (
               existing && existing.slice(args.offset, args.offset + args.limit)
             );
-            //console.log(args.offset, args.limit)
             // A read function should always return undefined if existing is
             // undefined. Returning undefined signals that the field is
             // missing from the cache, which instructs Apollo Client to
@@ -32,9 +24,6 @@ const cache = new InMemoryCache({
           merge(existing, incoming, { args }) {
             // Slicing is necessary because the existing data is
             // immutable, and frozen in development.
-            console.log(incoming);
-            console.log(args);
-            console.log(existing);
             if (args == null) {
               return undefined;
             }
@@ -43,15 +32,15 @@ const cache = new InMemoryCache({
               merged[args.offset + i] = incoming[i];
             }
             return merged;
-          },
-        },
-      },
-    },
-  },
+          }
+        }
+      }
+    }
+  }
 });
 
 const CLIENT = new ApolloClient({
-  uri: "https://nuri-challenge-backend.herokuapp.com/graphql",
+  uri: process.env.REACT_APP_BACKEND_URL,
   cache: cache,
   connectToDevTools: true,
 });

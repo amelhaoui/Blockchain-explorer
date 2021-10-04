@@ -1,4 +1,4 @@
-import { Resolvers, BlockSummary, Maybe} from './__generated/resolvers-types';
+import { Resolvers, BlockSummary, Maybe, BlockDetail} from './__generated/resolvers-types';
 
 const resolvers : Resolvers = {
     Query: {
@@ -7,6 +7,11 @@ const resolvers : Resolvers = {
         },
         block(_parent, {hash}, {dataSources}) {
           return dataSources.BlocksAPI.getBlock(hash);
+        },
+        transactions(_parent, {hash, page}, {dataSources}) {
+          const offset = (page - 1) * 10;
+
+          return dataSources.BlocksAPI.getBlock(hash).then((response: BlockDetail) => response?.tx.slice(offset, offset + 10 ));
         }
     }
 }

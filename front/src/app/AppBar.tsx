@@ -1,31 +1,17 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import { Box, Container } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { ReactComponent as NuriLogo } from "resources/logo.svg";
-import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import { Box, Container, IconButton, Toolbar, Typography, AppBar } from "@mui/material";
+
+import { ReactComponent as NuriLogo } from "resources/logo.svg";
 interface Props {
   children: React.ReactNode | React.ReactNode[];
 }
 
-const useStyles = makeStyles({
-  box: {
-    boxShadow: "0px",
-  },
-  //    toolbar: {backgroundColor: "#f0f0f0"}, // a nested style rule
-});
-
 export default function AppWrapper({ children }: Props): JSX.Element {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <Box >
-        <AppBar position="static">
+        <AppBar position="static" sx={{ borderBottom: 3 }}>
           <Container maxWidth="xl">
             <Toolbar>
               <Link to="/">
@@ -42,6 +28,16 @@ export default function AppWrapper({ children }: Props): JSX.Element {
       </Box>
 
       <Container maxWidth="xl">{children}</Container>
+
+      <Box sx={{ mt: 6 }}>
+        <AppBar position="static" sx={{ borderTop: 3 }}>
+          <Container maxWidth="xl">
+            <Toolbar>
+              © Copyright 2021 - Nuri Challenge
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Box>
     </React.Fragment>
   );
 }

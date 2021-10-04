@@ -19,7 +19,7 @@ export interface GetBlocks {
 }
 
 export interface GetBlocksVariables {
-  time?: string | null;
-  offset?: number | null;
-  limit?: number | null;
+  time: string;
+  offset: number;
+  limit: number;
 }

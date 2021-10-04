@@ -8,7 +8,6 @@ import { ApolloServerPluginDrainHttpServer, ApolloError } from 'apollo-server-co
 import { GraphQLRequest } from 'apollo-server-types';
 
 import * as Sentry from '@sentry/node';
-//import * as Tracing from '@sentry/tracing';
 
 import typeDefs from 'schema/schema';
 import resolvers from 'schema/resolvers';
@@ -27,7 +26,7 @@ dotenv.config();
 
 async function startApolloServer({ typeDefs, resolvers }: Config<ExpressContext>) {
     const app = express();
-    app.use(cors({ origin: "*", credentials: false }))
+    app.use(cors())
     const httpServer = http.createServer(app);
 
     const server = new ApolloServer({
@@ -103,12 +102,11 @@ async function startApolloServer({ typeDefs, resolvers }: Config<ExpressContext>
     // More required logic for integrating with Express
     await server.start();
     server.applyMiddleware({
-        app,
-        cors: false,
+        app
     });
 
     // Modified server startup
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 4000;
 
     await new Promise(resolve => httpServer.listen({ port: PORT}, () => resolve("Sucess")));
     logger.log('info', '🚀 Server ready at http://localhost:%s/%s', PORT, server.graphqlPath);

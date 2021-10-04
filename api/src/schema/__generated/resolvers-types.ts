@@ -38,6 +38,7 @@ export type Query = {
   __typename?: 'Query';
   block: BlockDetail;
   blocks: Array<Maybe<BlockSummary>>;
+  transactions: Array<Maybe<Transaction>>;
 };
 
 
@@ -50,6 +51,12 @@ export type QueryBlocksArgs = {
   limit: Scalars['Int'];
   offset: Scalars['Int'];
   time: Scalars['String'];
+};
+
+
+export type QueryTransactionsArgs = {
+  hash: Scalars['ID'];
+  page: Scalars['Int'];
 };
 
 export type Transaction = {
@@ -174,6 +181,7 @@ export type BlockSummaryResolvers<ContextType = any, ParentType extends Resolver
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   block?: Resolver<ResolversTypes['BlockDetail'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'hash'>>;
   blocks?: Resolver<Array<Maybe<ResolversTypes['BlockSummary']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'limit' | 'offset' | 'time'>>;
+  transactions?: Resolver<Array<Maybe<ResolversTypes['Transaction']>>, ParentType, ContextType, RequireFields<QueryTransactionsArgs, 'hash' | 'page'>>;
 };
 
 export type TransactionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Transaction'] = ResolversParentTypes['Transaction']> = {
