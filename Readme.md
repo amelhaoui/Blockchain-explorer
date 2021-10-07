@@ -1,4 +1,4 @@
-# Nuri Code Challenge
+# Code Challenge
 
 Hi, I'm applying to join the software engineering chapter. Here is my suggested solution: Let's go.
 
@@ -22,7 +22,7 @@ I created a MR against main branch. Happy to answer questions directly.
 # Overview
 
 The project follows CI/CD approach with test and deployment done after each push to develop or main branch. \
-This would change depending on the deployment strategy within NURI. \
+This would change depending on the deployment strategy within the company. \
 I created both a front and backend in separate folders.
 
 P.S: please note, I put the API_KEY directly on the workflows, as I dont have access to secret in the repository.
