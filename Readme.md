@@ -1,4 +1,4 @@
-# Draft: Nuri Code Challenge
+# Nuri Code Challenge
 
 Hi, I'm applying to join the software engineering chapter. Here is my suggested solution: Let's go.
 
@@ -102,6 +102,7 @@ You will also see any lint errors in the console.
 ```
 # frontend 
 cd front
+npm install
 npm start
 ```
 Check your server in [http://localhost:3000](http://localhost:3000) to view it in the browser. \
@@ -125,6 +126,10 @@ To reduce calls to blockchain.info API, more availability and faster responses.
 With a caching, there should be a strategy to be defined, as blocks can be represented as linked list. \
 To use (time in miliseconds) as key is not a * good solution * for retrieval. A better approach is to use height or block_id as key. \
 In the value side, we will store a number of blocks that came before this block.
+
+## Fallback errors:
+
+In case a URL is requested and we dont serve it (404) or an error from Server (4XX or 5XX), we should show proper UI message instead of showing the home page.
 
 ## Logging: 
 
