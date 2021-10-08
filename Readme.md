@@ -12,8 +12,7 @@ Hi, I'm applying to join the software engineering chapter. Here is my suggested 
 
 
 
-# Demo: https://challenge-nuri.herokuapp.com/
-> It may take up to 30 secondes as it starting up the front and the backend
+
 
 # Code Review
 
