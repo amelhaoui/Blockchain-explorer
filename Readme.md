@@ -1,7 +1,6 @@
-# Code Challenge
+# Blockchain Explorer
 
-Hi, I'm applying to join the software engineering chapter. Here is my suggested solution: Let's go.
-
+I created a client to use blockchain.info api.
 # Contents
 
 1. [Demo](#demo)
@@ -10,21 +9,12 @@ Hi, I'm applying to join the software engineering chapter. Here is my suggested 
 3. [Running Locally](#running-locally)
 4. [Limitations And TODOs](#limitations)
 
-
-
-
-
-# Code Review
-
-I created a MR against main branch. Happy to answer questions directly.
-
 # Overview
 
 The project follows CI/CD approach with test and deployment done after each push to develop or main branch. \
 This would change depending on the deployment strategy within the company. \
 I created both a front and backend in separate folders.
 
-P.S: please note, I put the API_KEY directly on the workflows, as I dont have access to secret in the repository.
 ## Stack:
     
 ### Backend: 
@@ -67,15 +57,15 @@ Open your command line and run the following commands:
 ### Backend server
 ```
 cd api
-docker build -t nuri-challenge-backend .
-docker run -d -p 5002:8000 -e PORT=8000 nuri-challenge-backend
+docker build -t challenge-backend .
+docker run -d -p 5002:8000 -e PORT=8000 challenge-backend
 // you can check the backend in you browser in localhost:5002
 ```
 ### Frontend server
 ```
 cd front
-docker build -t nuri-challenge-frontend .
-docker run -d -p 5001:80 nuri-challenge-frontend
+docker build -t challenge-frontend .
+docker run -d -p 5001:80 challenge-frontend
 // you can check the frontend in you browser in localhost:5001
 ```
 
@@ -134,6 +124,3 @@ In case a URL is requested and we dont serve it (404) or an error from Server (4
 
 To analyze and store logs, one alternative is to use the ELK suite. To monitor and investigate logs in a large scale. \
 Special attention should be given to sensitive information that should not be logged.
-
-
-# Thank you for reviewing my work.

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Box, Container, IconButton, Toolbar, Typography, AppBar } from "@mui/material";
 
-import { ReactComponent as NuriLogo } from "resources/logo.svg";
+import { ReactComponent as Logo } from "resources/logo.svg";
 interface Props {
   children: React.ReactNode | React.ReactNode[];
 }
@@ -16,7 +16,7 @@ export default function AppWrapper({ children }: Props): JSX.Element {
             <Toolbar>
               <Link to="/">
                 <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
-                  <NuriLogo width={50} height={50} />
+                  <Logo width={50} height={50} />
                 </IconButton>
               </Link>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -33,7 +33,7 @@ export default function AppWrapper({ children }: Props): JSX.Element {
         <AppBar position="static" sx={{ borderTop: 3 }}>
           <Container maxWidth="xl">
             <Toolbar>
-              © Copyright 2021 - Nuri Challenge
+              © Copyright 2021 - Challenge
             </Toolbar>
           </Container>
         </AppBar>
