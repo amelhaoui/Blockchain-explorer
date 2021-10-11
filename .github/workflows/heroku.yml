@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: b6da9421-787a-4215-9648-aa7f8ee638d3
-          heroku_app_name: "challenge-nuri" 
+          heroku_api_key: ${{ secrets.HEROKU_API }}
+          heroku_app_name: blockchain-explorer-react
           heroku_email: "melhaoui.abderrahmane@gmail.com"
           appdir: "front"
   test-backend:
@@ -36,10 +36,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build and push Docker to Heroku
         env:
-          HEROKU_APP_NAME: nuri-challenge-backend
+          HEROKU_APP_NAME: blockchai-explorer-backend
           DOCKERFILE_DIRECTORY: "api"
           HEROKU_EMAIL: "melhaoui.abderrahmane@gmail.com"
-          HEROKU_API_KEY: b6da9421-787a-4215-9648-aa7f8ee638d3
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
           DOCKERFILE_NAME: "Dockerfile"
           DOCKER_OPTIONS: "--no-cache --progress plain"
         run: |
